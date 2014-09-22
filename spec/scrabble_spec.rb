@@ -8,6 +8,10 @@ describe "Scrabble" do
       expect(Scrabble).to respond_to :score
     end
 
+    it "calculates letter points" do
+      expect(Scrabble.letter_points("z")).to eq 10
+    end
+
     it "gives correct score" do
       expect(Scrabble.score("cat")).to eq 5
     end
@@ -20,14 +24,21 @@ describe "Scrabble" do
       expect(Scrabble).to respond_to :highest_score_from
     end
 
-
-  end
-
-  describe "#instance methods here" do
-
-    it "calculates letter points" do
-      expect(Scrabble.letter_points("z")).to eq 10
+    it "returns word with highest score" do
+      expect(Scrabble.highest_score_from(["cat", "queen"])).to eq "queen"
     end
+
+
+
+    # it "returns 7 letter word when there is a word score tie" do
+    #   expect(Scrabble.highest_score_from(["cat", "queen"])).to eq ""
+    # end
+
+    it "returns shorter word when there is a word score tie" do
+      expect(Scrabble.highest_score_from(["star", "dot"])).to eq "dot"
+    end
+
+
 
   end
 
