@@ -40,11 +40,10 @@ describe "Player" do
 
     it "returns false when player adds a new word if they have won" do
       player.play("zzzzzzz")
-      player.play("zzz")
+      player.play("zzzz")
       expect(player.play("word")).to eq false
     end
   end
-
 
   describe "when player has played multiple words" do
     it "#highest_scoring_word" do
@@ -61,10 +60,6 @@ describe "Player" do
       player.plays = ["aaa", "rrr", "ttt"]
       expect(player.highest_word_score).to eq 3
     end
-
   end
-
-
-
 
 end

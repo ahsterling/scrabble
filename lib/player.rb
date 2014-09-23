@@ -10,12 +10,12 @@ class Player
   end
 
   def won?
-    total_score == 100
+    total_score >= 100
   end
 
   def total_score
     all_scores = @plays.collect { |word| Scrabble.score(word) }
-    all_scores.inject(0) { |sum, i| sum + i}
+    all_scores.inject(0) { |sum, i| sum + i }
   end
 
   def play(word)

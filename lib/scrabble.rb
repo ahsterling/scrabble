@@ -20,8 +20,7 @@ class Scrabble
 
   def self.check_seven_letter(array_of_words)
     sorted_by_length = array_of_words.sort_by { |word| word.length }
-    seven_letter_words = sorted_by_length.select { |word| word.length == 7 }
-    return seven_letter_words[0]
+    sorted_by_length.select { |word| word.length == 7 }[0]
   end
 
   def self.check_exceptions(top_words_array)
@@ -38,8 +37,6 @@ class Scrabble
     array_of_words.sort_by { |word| word.length }[0]
   end
 
-
-
   def self.letter_points(letter)
     letter_score = 0
 
@@ -55,8 +52,8 @@ class Scrabble
       if key.include? letter
         letter_score = value
       end}
-    raise ArgumentError, "not a letter" if letter_score == 0  
-    return letter_score
+    raise ArgumentError, "not a letter" if letter_score == 0
+    letter_score
 
   end
 
