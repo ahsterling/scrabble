@@ -1,24 +1,21 @@
 require './lib/scrabble.rb'
 
 describe "Scrabble" do
-  describe "#class methods here" do
 
-    context "#letter_points" do
+    describe "#letter_points" do
       it "calculates letter points" do
         expect(Scrabble.letter_points("z")).to eq 10
       end
 
       it "calculates letter points as 0 when input is invalid" do
-        expect(Scrabble.letter_points(" ")).to eq 0
-        expect(Scrabble.letter_points("4")).to eq 0
-        expect(Scrabble.letter_points("!")).to eq 0
-        expect(Scrabble.letter_points("")).to eq 0
+        expect{Scrabble.letter_points(" ")}.to raise_error
+        expect{Scrabble.letter_points("4")}.to raise_error
+        expect{Scrabble.letter_points("!")}.to raise_error
+        expect{Scrabble.letter_points("")}.to raise_error
       end
-
     end
 
-    context "#score" do
-
+    describe "calls #score method" do
       it "gives correct score" do
         expect(Scrabble.score("cat")).to eq 5
       end
@@ -28,16 +25,14 @@ describe "Scrabble" do
       end
 
       it "gives score of 0 when input is invalid" do
-        expect(Scrabble.score("4739")).to eq 0
-        expect(Scrabble.score("48c9sajfsd")).to eq 0
-        expect(Scrabble.score("%1a ")).to eq 0
-
+        expect{Scrabble.score("4739")}.to raise_error
+        expect{Scrabble.score("48c9sajfsd")}.to raise_error
+        expect{Scrabble.score("%1a ")}.to raise_error
+        expect{Scrabble.score("%#@#^%#")}.to raise_error
       end
-
     end
 
-    context "#highest_score_from" do
-
+    describe "#highest_score_from" do
       it "returns word with highest score from array of two" do
         expect(Scrabble.highest_score_from(["cat", "queen"])).to eq "queen"
       end
@@ -54,12 +49,5 @@ describe "Scrabble" do
         expect(Scrabble.highest_score_from(["aaaaa", "eeeee", "iiiii"])).to eq "aaaaa"
       end
     end
-
-
-
-
-
-  end
-
 
 end
