@@ -10,7 +10,7 @@ describe "TileBag" do
   end
 
   it "contains a collection of tiles" do
-    expect(tilebag.default_set.class).to eq Hash
+    expect(tilebag.default_set.class).to eq Array
   end
 
   it "#draw_tiles(n)" do
