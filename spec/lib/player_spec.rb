@@ -51,6 +51,11 @@ describe "Player" do
     expect(player.highest_word_score).to eq 70
   end
 
+  it "returns highest_word_score when there is a tie" do
+    player.plays = ["aaa", "rrr", "ttt"]
+    expect(player.highest_word_score).to eq 3 
+  end
+
 
 
 end

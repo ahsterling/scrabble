@@ -1,11 +1,17 @@
 class Scrabble
 
   def self.score(word)
+    wrong_input?(word)
     word_score = 0
-    unless word.downcase[/\d/]
-      word.downcase.chars.each { |letter| word_score += letter_points(letter) }
-    end
+    word.downcase.chars.each { |letter| word_score += letter_points(letter) }
+    # unless word.downcase[/\d/]
+    #   word.downcase.chars.each { |letter| word_score += letter_points(letter) }
+    # end
     word_score
+  end
+
+  def self.wrong_input?(word)
+    raise ArgumentError, "wrong type of input" if word.downcase[/\d/]
   end
 
   def self.highest_score_from(array_of_words)
@@ -55,3 +61,5 @@ class Scrabble
   end
 
 end
+
+Scrabble.wrong_input?("473829")
