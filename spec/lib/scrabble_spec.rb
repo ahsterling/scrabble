@@ -1,4 +1,4 @@
-require './scrabble.rb'
+require './lib/scrabble.rb'
 
 describe "Scrabble" do
   describe "#class methods here" do
