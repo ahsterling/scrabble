@@ -13,19 +13,25 @@ class Player
     total_score == 100
   end
 
+  def total_score
+    all_scores = @plays.collect { |word| Scrabble.score(word) }
+    all_scores.inject(0) { |sum, i| sum + i}
+  end
+
   def play(word)
-    if won?
-      false
-    else
+    if !won?
       @plays << word
+    else
+      false
     end
   end
 
   def highest_scoring_word
-    @sorted_plays = @plays.sort_by do |word|
-      Scrabble.score(word)
-    end
-    @sorted_plays[-1]
+    Scrabble.highest_score_from(@plays)
+  end
+
+  def highest_word_score
+    Scrabble.score(highest_scoring_word)
   end
 
 end

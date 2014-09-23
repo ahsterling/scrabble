@@ -1,10 +1,11 @@
 require './lib/player.rb'
+require './lib/scrabble.rb'
 
 describe "Player" do
   let(:player) { Player.new("Allie") }
 
-  it "responds to new method" do
-    expect(Player).to respond_to :new
+  it "creates an instance of player class" do
+    expect(player.class).to eq Player
   end
 
   it "returns player name" do
@@ -19,24 +20,37 @@ describe "Player" do
     expect(player.won?).to eq false
   end
 
-  it "returns array of words played by Player" do
-    expect(player.plays.count).to eq 0
+  it "#plays returns array of words played by Player" do
+    expect(player.plays.class).to eq Array
   end
 
   it "adds a word to the plays array with #play(word)" do
-    expect(player.play("apple")[0]).to eq "apple"
+    player.play("apple")
+    player.play("cheese")
+    expect(player.plays[1]).to eq "cheese"
+  end
+
+  it "updates total score when word is added to plays" do
+    player.play("ocean")
+    expect(player.total_score).to eq 7
   end
 
   it "returns false when player adds a new word if they have won" do
-    player.total_score = 100
+    player.play("zzzzzzz")
+    player.play("zzz")
     expect(player.play("word")).to eq false
   end
 
   it "#highest_scoring_word" do
-    player.plays = ["cat", "zzzzzzz", "apple"]
+    player.plays = ["cat", "zzzzzzz", "apple", "qqqqqqq"]
     expect(player.highest_scoring_word).to eq "zzzzzzz"
   end
 
-  
+  it "#highest_word_score" do
+    player.plays = ["cat", "zzzzzzz", "apple", "qqqqqqq"]
+    expect(player.highest_word_score).to eq 70
+  end
+
+
 
 end
