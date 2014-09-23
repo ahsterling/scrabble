@@ -10,10 +10,10 @@ describe "TileBag" do
   end
 
   it "contains a collection of tiles" do
-    expect(tilebag.bag.class).to eq Array
+    expect(tilebag.default_set.class).to eq Hash
   end
 
   it "#draw_tiles(n)" do
-    expect(tilebag.draw_tiles(5))
+    expect(tilebag.draw_tiles(5).count).to eq 5
   end
 end
