@@ -22,6 +22,7 @@ class Scrabble
     return best_word
   end
 
+
   def self.check_seven_letter(array_of_words)
     sorted_by_length = array_of_words.sort_by { |word| word.length }
     seven_letter_words = sorted_by_length.select { |word| word.length == 7 }
@@ -36,32 +37,19 @@ class Scrabble
 
   def self.letter_points(letter)
     score = 0
-    letter_hash = {1 => ["a","e", "i", "o", "u", "l", "n", "r", "s", "t"],
-                  2 => ["d", "g"],
-                  3 => ["b", "c", "m", "p"],
-                  4 => ["f", "h", "v", "w", "y"],
-                  5 => ["k"],
-                  8 => ["j", "x"],
-                  10 => ["q", "z"]}
 
+    letter_hash = {["a","e", "i", "o", "u", "l", "n", "r", "s", "t"] => 1,
+    ["d", "g"] => 2,
+    ["b", "c", "m", "p"] => 3,
+    ["f", "h", "v", "w", "y"] => 4,
+    ["k"] => 5,
+    ["j", "x"] => 8,
+    ["q", "z"] => 10}
 
-    if letter_hash[1].include? letter
-      score = 1
-    elsif letter_hash[2].include? letter
-      score = 2
-    elsif letter_hash[3].include? letter
-      score = 3
-    elsif letter_hash[4].include? letter
-      score = 4
-    elsif letter_hash[5].include? letter
-      score = 5
-    elsif letter_hash[8].include? letter
-      score = 8
-    elsif letter_hash[10].include? letter
-      score = 10
-    else
-      score = 0
-    end
+    letter_hash.each {|key, value|
+      if key.include? letter
+        score = value
+      end}
 
     return score
   end
