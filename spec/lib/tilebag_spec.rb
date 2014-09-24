@@ -13,7 +13,4 @@ describe "TileBag" do
     expect(tilebag.default_set.class).to eq Array
   end
 
-  it "#draw_tiles(n)" do
-    expect(tilebag.draw_tiles(5).count).to eq 5
-  end
 end
